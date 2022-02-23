@@ -13,7 +13,7 @@ class SerialPublisher(Node):
 		self.publisher = self.create_publisher(String, 
                                          self.get_parameter('topic').get_parameter_value().string_value, 
                                         10)
-		timer_period = 2 # second
+		timer_period = 1.3 # second
 		self.timer = self.create_timer(timer_period, self.timer_callback)
 		self.i = 0
 

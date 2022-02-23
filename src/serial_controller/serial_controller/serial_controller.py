@@ -13,7 +13,7 @@ class SerialController(Node):
 		
   		#TODO: Change below line to fetch the parameter value from a namespace in a .yaml config file
 		self.ser = serial.Serial(self.get_parameter('device').get_parameter_value().string_value,
-                           9600, #Note: Baud Rate must be the same in the arduino program, otherwise signal is not recieved!
+                           115200, #Note: Baud Rate must be the same in the arduino program, otherwise signal is not recieved!
                            timeout=4)
 		
   		#TODO: Change below subscription to fetch the parameter value from a namespace in a .yaml config file
