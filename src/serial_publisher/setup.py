@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'serial_motor'
+package_name = 'serial_publisher'
 
 setup(
     name=package_name,
@@ -13,14 +13,14 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='autobob',
-    maintainer_email='autobob@todo.todo',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    maintainer='Andy Ponce',
+    maintainer_email='andy.ponce@outlook.com',
+    description='serial publisher node',
+    license='Apache 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-                'motor = serial_motor.motor_node:main',
+            'publisher = serial_publisher.serial_publisher:main',
         ],
     },
 )

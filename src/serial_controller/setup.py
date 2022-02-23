@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'basic_publisher'
+package_name = 'serial_controller'
 
 setup(
     name=package_name,
@@ -13,14 +13,14 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='jmcginley',
-    maintainer_email='jmcginley@ginkgobioworks.com',
-    description='A basic publisher node',
-    license='Apache License 2.0',
+    maintainer='Andy Ponce',
+    maintainer_email='andy.ponce@outlook.com',
+    description='serial controller node',
+    license='Apache 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'talker = basic_publisher.publisher_node:main',
+                'controller = serial_controller.serial_controller:main',
         ],
     },
 )
