@@ -1,25 +1,29 @@
-const int Led = 3;    // pin the yellow LED is attached to
-String command;
-void setup() {
+const int Led = 3;
 
-  // make the LED pins outputs
+void setup() 
+{
   pinMode(Led, OUTPUT);
-
-  // start serial communication for debugging
-  Serial.begin(115200);
-
+  Serial.begin(9600);
+  while (! Serial); // Wait until Serial is ready
+  Serial.println("Enter 0 to turn off LED and 1 to turn on LED");
 }
 
-void loop() {
-
-  if(Serial.available()>0){
-    command = Serial.readStringUntil("!");
-    if(command == "ledon!"){
-      digitalWrite(Led,HIGH);
-    }
-    if(command == "ledoff!"){
+void loop() 
+{
+  if (Serial.available())
+  {
+    char ch = Serial.read();
+    if (ch == '0')
+    {
       digitalWrite(Led,LOW);
+      delay(10);
+      Serial.println("Led Turned OFF");
+    }
+    if (ch == '1')
+    {
+      digitalWrite(Led,HIGH);
+      delay(10);
+      Serial.println("Led Turned ON");
     }
   }
-
-  }
+}
