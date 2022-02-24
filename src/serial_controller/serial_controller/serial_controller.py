@@ -13,7 +13,7 @@ class SerialController(Node):
 		
   		#TODO: Change below line to fetch the parameter value from a namespace in a .yaml config file
 		self.ser = serial.Serial(self.get_parameter('device').get_parameter_value().string_value,
-                           115200, #Note: Baud Rate must be the same in the arduino program, otherwise signal is not recieved!
+                           9600, #Note: Baud Rate must be the same in the arduino program, otherwise signal is not recieved!
                            timeout=4)
 		
   		#TODO: Change below subscription to fetch the parameter value from a namespace in a .yaml config file
@@ -22,16 +22,19 @@ class SerialController(Node):
                                               self.serial_listener_callback, 
                                               10)
 		self.subscriber # prevent unused variable warning
+		self.ser.reset_input_buffer()
 	
 	def serial_listener_callback(self, msg):
 		#TODO: Change this so that commands are derived from a variable array of paramters. 
   		#TODO: Make it so that we can avoid editing this function in the future by editing the paramater values
 		if msg.data == "on": #TODO: future format ideally would be "if msg.data == command_paramater"
-			self.ser.write(b'ledon!') #TODO: future format ideally would be "if msg.data == command_value"
-			self.get_logger().info('led on command sent') #TODO: "command_name" sent
+			self.ser.write(b'1') #TODO: future format ideally would be "if msg.data == command_value"
+			line = self.ser.readline().decode('utf-8').rstrip()
+			print(line) #TODO: "command_name" sent
 		if msg.data == "off": #TODO: future format ideally would be "if msg.data == command_value"
-			self.ser.write(b'ledoff!')  #TODO: future format ideally would be "if msg.data == command_value"
-			self.get_logger().info('led off command sent')  #TODO: "command_name" sent
+			self.ser.write(b'0')  #TODO: future format ideally would be "if msg.data == command_value"
+			line = self.ser.readline().decode('utf-8').rstrip()
+			print(line)  #TODO: "command_name" sent
 
 
 def main(args=None):
